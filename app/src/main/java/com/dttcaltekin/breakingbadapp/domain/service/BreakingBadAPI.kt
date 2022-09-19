@@ -1,9 +1,7 @@
 package com.dttcaltekin.breakingbadapp.domain.service
 
 import com.dttcaltekin.breakingbadapp.domain.model.Character
-import com.dttcaltekin.breakingbadapp.domain.model.CharacterItem
 import com.dttcaltekin.breakingbadapp.domain.model.Quote
-import com.dttcaltekin.breakingbadapp.utils.Resource
 import retrofit2.http.GET
 import retrofit2.http.Query
 

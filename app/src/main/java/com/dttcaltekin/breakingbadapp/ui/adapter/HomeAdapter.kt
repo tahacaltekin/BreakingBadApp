@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.dttcaltekin.breakingbadapp.databinding.ItemCharacterBinding
 import com.dttcaltekin.breakingbadapp.domain.model.Character
-import com.dttcaltekin.breakingbadapp.domain.model.CharacterItem
 import com.dttcaltekin.breakingbadapp.utils.loadImage
 import com.dttcaltekin.breakingbadapp.utils.placeHolderProgressBar
 

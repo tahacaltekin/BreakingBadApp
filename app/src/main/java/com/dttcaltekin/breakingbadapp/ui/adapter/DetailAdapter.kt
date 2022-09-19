@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dttcaltekin.breakingbadapp.databinding.ItemQuoteBinding
 import com.dttcaltekin.breakingbadapp.domain.model.Quote
 
-class DetailAdapter() : RecyclerView.Adapter<DetailAdapter.QuoteViewHolder>() {
+class DetailAdapter : RecyclerView.Adapter<DetailAdapter.QuoteViewHolder>() {
 
     private var quotes: Quote? = null
 
