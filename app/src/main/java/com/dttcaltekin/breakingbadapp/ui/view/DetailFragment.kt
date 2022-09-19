@@ -33,7 +33,9 @@ class DetailFragment : BaseFragment<FragmentDetailBinding, DetailViewModel>(
                     is Resource.Success -> {
                         binding.progressBar.isVisible = false
                         it.data?.let { quotes ->
-                            adapter = DetailAdapter(quotes)
+                            adapter = DetailAdapter()
+
+                            adapter?.updateQuoteList(quotes)
                             binding.quoteRV.adapter = adapter
                         }
                     }
@@ -43,9 +45,10 @@ class DetailFragment : BaseFragment<FragmentDetailBinding, DetailViewModel>(
                         Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
                     }
 
-                    else -> {
+                    is Resource.Loading -> {
                         binding.progressBar.isVisible = true
                     }
+                    else -> {}
                 }
             }
         }

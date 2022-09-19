@@ -16,11 +16,10 @@ class DetailViewModel @Inject constructor(
 ) : ViewModel() {
 
     val quoteList = MutableStateFlow<Resource<Quote>?>(null)
-    private val isLoading = MutableStateFlow(true)
 
     fun getQuote(name: String) {
+        quoteList.value = Resource.Loading()
         viewModelScope.launch {
-            isLoading.value = true
             val request = quoteRepository.getDetail(name)
             quoteList.value = request
         }

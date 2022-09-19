@@ -16,7 +16,6 @@ class HomeViewModel @Inject constructor(
 ) : ViewModel() {
 
     val characterList = MutableStateFlow<Resource<Character>?>(null)
-    private val isLoading = MutableStateFlow<Boolean>(true)
 
 
     init {
@@ -24,8 +23,8 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun getCharacters() {
+        characterList.value = Resource.Loading()
         viewModelScope.launch {
-            isLoading.value = true
             val request = characterRepository.getData()
             characterList.value = request
         }

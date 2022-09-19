@@ -6,9 +6,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dttcaltekin.breakingbadapp.databinding.ItemQuoteBinding
 import com.dttcaltekin.breakingbadapp.domain.model.Quote
 
-class DetailAdapter(
-    private val quotes: Quote
-) : RecyclerView.Adapter<DetailAdapter.QuoteViewHolder>() {
+class DetailAdapter() : RecyclerView.Adapter<DetailAdapter.QuoteViewHolder>() {
+
+    private var quotes: Quote? = null
 
     class QuoteViewHolder(val binding: ItemQuoteBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -21,10 +21,17 @@ class DetailAdapter(
     }
 
     override fun onBindViewHolder(holder: QuoteViewHolder, position: Int) {
-        val currentQuote = quotes[position]
+        if (quotes == null) {
+            return
+        }
+
+        val currentQuote = quotes!![position]
         holder.binding.quote.text = currentQuote.quote
     }
 
-    override fun getItemCount() = quotes.size
+    fun updateQuoteList(newQuoteList : Quote) {
+        quotes = newQuoteList
+    }
+    override fun getItemCount() = quotes?.size ?: 0
 
 }

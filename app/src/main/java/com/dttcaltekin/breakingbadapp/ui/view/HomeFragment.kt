@@ -31,11 +31,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
                     is Resource.Success -> {
                         binding.progressBar.isVisible = false
                         it.data?.let { character ->
-                            adapter = HomeAdapter(character) { name ->
+                            adapter = HomeAdapter() { name ->
                                 val action =
                                     HomeFragmentDirections.actionHomeFragmentToDetailFragment(name)
                                 findNavController().navigate(action)
                             }
+                            adapter?.updateList(character)
                             binding.characterRV.adapter = adapter
                         }
                     }
@@ -45,9 +46,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
                         Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
                     }
 
-                    else -> {
+                    is Resource.Loading -> {
                         binding.progressBar.isVisible = true
                     }
+
+                    else -> {}
                 }
             }
         }

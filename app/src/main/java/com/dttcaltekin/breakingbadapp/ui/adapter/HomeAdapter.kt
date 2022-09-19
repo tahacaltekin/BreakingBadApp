@@ -1,5 +1,6 @@
 package com.dttcaltekin.breakingbadapp.ui.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -10,9 +11,10 @@ import com.dttcaltekin.breakingbadapp.utils.loadImage
 import com.dttcaltekin.breakingbadapp.utils.placeHolderProgressBar
 
 class HomeAdapter(
-    private val characterList: Character,
     private val onClick: (String) -> Unit
 ) : RecyclerView.Adapter<HomeAdapter.CharacterViewHolder>() {
+
+    private var characterList: Character? = null
 
     class CharacterViewHolder(val binding: ItemCharacterBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -26,7 +28,10 @@ class HomeAdapter(
     }
 
     override fun onBindViewHolder(holder: CharacterViewHolder, position: Int) {
-        val currentCharacter = characterList[position]
+        if (characterList == null)
+            return
+
+        val currentCharacter = characterList!![position]
         holder.binding.apply {
             name.text = currentCharacter.name
             nickName.text = currentCharacter.nickname
@@ -44,5 +49,11 @@ class HomeAdapter(
         }
     }
 
-    override fun getItemCount() = characterList.size
+    @SuppressLint("NotifyDataSetChanged")
+    fun updateList(newCharacterList: Character) {
+        characterList = newCharacterList
+        notifyDataSetChanged()
+    }
+
+    override fun getItemCount() = characterList?.size ?: 0
 }
