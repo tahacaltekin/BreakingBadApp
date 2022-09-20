@@ -27,6 +27,7 @@ class DetailAdapter : RecyclerView.Adapter<DetailAdapter.QuoteViewHolder>() {
 
         val currentQuote = quotes!![position]
         holder.binding.quote.text = currentQuote.quote
+        holder.binding.author.text = currentQuote.author
     }
 
     fun updateQuoteList(newQuoteList : Quote) {
